@@ -1,0 +1,39 @@
+{
+  "driver_id": "uc_intg_ezbeq",
+  "version": "1.0.0",
+  "min_core_api": "0.22.0",
+  "name": {
+    "en": "ezBEQ"
+  },
+  "icon": "uc:speaker",
+  "description": {
+    "en": "Load BEQ (Bass EQ) filters onto your DSP from your Remote via an ezBEQ server. Browse or search the BEQ catalogue and load a movie's filters to any device/slot. Works with every DSP ezBEQ supports (miniDSP, Monoprice HTP-1, JRiver, CamillaDSP, Q-SYS)."
+  },
+  "developer": {
+    "name": "Meir Miyara",
+    "email": "meir.miyara@gmail.com",
+    "url": "https://github.com/mase1981"
+  },
+  "home_page": "https://github.com/mase1981/uc-intg-ezbeq",
+  "release_date": "2026-07-24",
+  "setup_data_schema": {
+    "title": {
+      "en": "ezBEQ Setup"
+    },
+    "settings": [
+      {
+        "id": "info",
+        "label": {
+          "en": "Connect to your ezBEQ server"
+        },
+        "field": {
+          "label": {
+            "value": {
+              "en": "On the next screen, enter the IP address and port of your ezBEQ server. Your DSP devices, slots, and the BEQ catalogue are discovered automatically."
+            }
+          }
+        }
+      }
+    ]
+  }
+}
