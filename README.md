@@ -17,7 +17,8 @@ Load **BEQ** (Bass EQ) filters onto your DSP straight from your Unfolded Circle 
 
 BEQ restores the low-frequency content mixed into a movie's original theatrical track. ezBEQ is the server that manages loading those filters onto your DSP; this integration turns it into a native Remote experience:
 
-- **🎬 Browse & Search the BEQ catalogue** - a media browser (by Audio Type / Author / Year, plus full-text search) powered by your ezBEQ server. Pick a movie to load its BEQ.
+- **🎬 Browse & Search the BEQ catalogue** - a media browser (by **Title A-Z**, Audio Type, Author or Year, plus full-text **search by name**) powered by your ezBEQ server. Pick a movie to load its BEQ.
+- **🖼️ Movie posters** shown as thumbnails while you browse, and the loaded BEQ's **frequency-response graph** displayed on the media player.
 - **🎚️ Slot control** - a Select entity per DSP device chooses which slot the load applies to.
 - **📊 Live slot status** - a Sensor per slot shows exactly which BEQ is loaded (or Empty), updated in real time.
 - **🔌 Works with every ezBEQ backend** - miniDSP, Monoprice HTP-1, JRiver, CamillaDSP, Q-SYS. One integration, all your DSPs.

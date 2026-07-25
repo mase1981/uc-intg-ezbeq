@@ -16,6 +16,7 @@ _LOG = logging.getLogger(__name__)
 FEATURES = [
     media_player.Features.MEDIA_TITLE,
     media_player.Features.MEDIA_ARTIST,
+    media_player.Features.MEDIA_IMAGE_URL,
     media_player.Features.PLAY_MEDIA,
     media_player.Features.BROWSE_MEDIA,
     media_player.Features.SEARCH_MEDIA,
@@ -39,6 +40,7 @@ class EzbeqMediaPlayer(MediaPlayerEntity):
                 media_player.Attributes.STATE: media_player.States.UNKNOWN,
                 media_player.Attributes.MEDIA_TITLE: "",
                 media_player.Attributes.MEDIA_ARTIST: "",
+                media_player.Attributes.MEDIA_IMAGE_URL: "",
                 media_player.Attributes.MUTED: False,
             },
             device_class=media_player.DeviceClasses.RECEIVER,
@@ -54,15 +56,17 @@ class EzbeqMediaPlayer(MediaPlayerEntity):
         slot = self._device.slot(self._dsp_name, slot_id)
         title = "No BEQ loaded"
         artist = ""
-        if slot and slot.get("last") and slot.get("last") != "Empty":
+        image = ""
+        loaded = bool(slot and slot.get("last") and slot.get("last") != "Empty")
+        if loaded:
             title = slot["last"]
             artist = slot.get("author", "")
+            image = browser.graph_for_title(title) or ""
         self.update({
-            media_player.Attributes.STATE: media_player.States.PLAYING
-            if artist or title != "No BEQ loaded"
-            else media_player.States.ON,
+            media_player.Attributes.STATE: media_player.States.PLAYING if loaded else media_player.States.ON,
             media_player.Attributes.MEDIA_TITLE: f"Slot {slot_id}: {title}",
             media_player.Attributes.MEDIA_ARTIST: artist,
+            media_player.Attributes.MEDIA_IMAGE_URL: image,
             media_player.Attributes.MUTED: self._device.is_muted(self._dsp_name),
         })
 

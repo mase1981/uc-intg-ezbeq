@@ -149,7 +149,12 @@ class EzbeqDevice(WebSocketPollingDevice):
         self._ws = await session.ws_connect(self._client.ws_url, heartbeat=30)
         # Seed state via REST so entities populate immediately.
         await self._refresh_devices()
+        self._loop.create_task(self._prefetch_catalogue())
         return self._ws
+
+    async def _prefetch_catalogue(self) -> None:
+        from uc_intg_ezbeq import browser
+        await browser.prefetch(self)
 
     async def close_websocket(self) -> None:
         if self._ws is not None:
@@ -186,6 +191,7 @@ class EzbeqDevice(WebSocketPollingDevice):
     # -- Polling fallback ----------------------------------------------
     async def establish_connection(self) -> None:
         await self._refresh_devices()
+        self._loop.create_task(self._prefetch_catalogue())
 
     async def poll_device(self) -> None:
         await self._refresh_devices()
